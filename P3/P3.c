@@ -49,32 +49,45 @@ int main(){
 
     int start = 0, end = n-1;
 
-    while(index < n){
-        if(!visit[end]){
-            if(weight[end] >= M){
-                printf("1. weight[%d] is %d and now count is %d\n",end,weight[end],count);
-                visit[end] = 1;
-                count++;
-                end--;
-                index++;
+    // while(index < n){
+    //     if(!visit[end]){
+    //         if(weight[end] >= M){
+    //             visit[end] = 1;
+    //             count++;
+    //             end--;
+    //             index++;
+    //         }
+    //         else{
+    //             if((weight[end] + weight[start]) <= M){
+    //                 visit[end] = 1;
+    //                 visit[start] = 1;
+    //                 count++;
+    //                 end--;
+    //                 start++;
+    //                 index += 2;
+    //             }
+    //             else{
+    //                 visit[end] = 1;
+    //                 count++;
+    //                 end--;
+    //                 index++;
+    //             }
+    //         }
+    //     }
+    // }
+    
+    while(!visit[end]){
+        count++;
+        if(weight[end] >= M){
+            visit[end--] = 1;
+        }
+        else{
+            if(weight[end]+weight[start] <= M){
+                visit[end--] = 1;
+                visit[start++] = 1;
             }
             else{
-                if((weight[end] + weight[start]) <= M){
-                    printf("2. weight[%d] is %d, weight[%d] is %d and now count is %d\n",end,weight[end],start,weight[start],count);
-                    visit[end] = 1;
-                    visit[start] = 1;
-                    count++;
-                    end--;
-                    start++;
-                    index += 2;
-                }
-                else{
-                    printf("3.  weight[%d] is %d andnow count is %d\n",end,weight[end],count);
-                    visit[end] = 1;
-                    count++;
-                    end--;
-                    index++;
-                }
+                visit[end--] = 1;
             }
         }
     }
