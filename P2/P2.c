@@ -52,7 +52,6 @@ int main(){
         } else {
             sum += b[right++].people;
         }
-        j++;
     }
     printf("%d\n",max);
 }
